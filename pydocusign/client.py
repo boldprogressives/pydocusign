@@ -398,6 +398,15 @@ class DocuSignClient(object):
               .format(accountId=self.account_id,
                       envelopeId=envelopeId)
         return self.get(url)
+        
+    def get_envelope_status(self, envelopeId):
+        """GET {account}/envelopes/{envelopeId} and return JSON."""
+        if not self.account_url:
+            self.login_information()
+        url = '/accounts/{accountId}/envelopes/{envelopeId}' \
+              .format(accountId=self.account_id,
+                      envelopeId=envelopeId)
+        return self.get(url)
 
     def post_recipient_view(self, authenticationMethod=None,
                             clientUserId='', email='', envelopeId='',
